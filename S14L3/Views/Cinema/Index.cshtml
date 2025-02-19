@@ -1,0 +1,45 @@
+﻿@model S14L3.Models.ClienteViewModel
+
+@{
+    ViewData["Title"] = "Cinema";
+}
+
+<h3>Acquista Biglietto</h3>
+
+<div>
+    <form method="post" asp-controller="Cinema" asp-action="Add">
+
+        <div>
+            <label for="firstName" asp-for="Nome" class="form-label"></label>
+            <input id="firstName" asp-for="Nome" class="form-control" />
+            <span class="text-danger" asp-validation-for="Nome"></span>
+        </div>
+
+        <div>
+            <label for="surname" asp-for="Cognome" class="form-label"></label>
+            <input id="surname" asp-for="Cognome" class="form-control" />
+            <span class="text-danger" asp-validation-for="Cognome"></span>
+        </div>
+
+        <div>
+            <label for="ticketType" asp-for="TipoBiglietto" class="form-label">Biglietto ridotto</label>
+            <input type="checkbox" id="ticketType" asp-for="TipoBiglietto" class="form-check-input" />
+            <span class="text-danger" asp-validation-for="TipoBiglietto"></span>
+        </div>
+
+        <div>
+            <label for="Sala" asp-for="Sala" class="form-label"></label>
+            <select asp-for="Sala" asp-items="Model.Sale" class="form-control"></select>
+        </div>
+
+        @if(Model.Error)
+        {
+            <span class="text-danger">Sala piena seleziona un altra sala</span>
+        }
+
+        <div>
+            <button class="btn btn-success" type="submit">Acquista</button>
+            <button class="btn btn-warning" type="reset">Reset</button>
+        </div>
+    </form>
+</div>
