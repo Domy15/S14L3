@@ -58,5 +58,11 @@
             <button class="btn btn-success" type="submit">Acquista</button>
             <button class="btn btn-warning" type="reset">Reset</button>
         </div>
+
+        <div class="mt-2">
+            <a class="btn btn-primary" asp-controller="Cinema" asp-action="ClientList" asp-route-id="NORD">Lista Clienti Sala Nord</a>
+            <a class="btn btn-primary" asp-controller="Cinema" asp-action="ClientList" asp-route-id="SUD">Lista Clienti Sala Sud</a>
+            <a class="btn btn-primary" asp-controller="Cinema" asp-action="ClientList" asp-route-id="EST">Lista Clienti Sala Est</a>
+        </div>
     </form>
 </div>

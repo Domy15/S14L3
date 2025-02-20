@@ -1,0 +1,32 @@
+﻿@model EditCliente
+
+@{
+	TempData["Title"] = "Edit";
+}
+
+<h3>Modifica dettagli cliente</h3>
+
+<form method="post" asp-controller="Cinema" asp-action="SaveEdit" asp-route-id="@Model._id">
+
+    <div>
+        <label for="firstName" asp-for="_nome" class="form-label"></label>
+        <input id="firstName" asp-for="_nome" class="form-control" />
+        <span class="text-danger" asp-validation-for="_nome"></span>
+    </div>
+
+    <div>
+        <label for="description" asp-for="_cognome" class="form-label"></label>
+        <textarea id="description" asp-for="_cognome" class="form-control"></textarea>
+        <span class="text-danger" asp-validation-for="_cognome"></span>
+    </div>
+
+    <div>
+        <label for="ticketType" asp-for="_tipoBiglietto" class="form-label">Biglietto ridotto meno di 10 anni</label>
+        <input type="checkbox" id="ticketType" asp-for="_tipoBiglietto" class="form-check-input" />
+        <span class="text-danger" asp-validation-for="_tipoBiglietto"></span>
+    </div>
+
+    <div>
+        <button class="btn btn-success" type="submit">Modifica</button>
+    </div>
+</form>

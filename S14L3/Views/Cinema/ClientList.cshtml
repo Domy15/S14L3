@@ -1,0 +1,38 @@
+﻿@model S14L3.Models.SalaViewModel
+
+@{
+    ViewData["Title"] = "ClientList";
+}
+
+<div>
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Nome</th>
+                <th>Cognome</th>
+                <th>Ridotto</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var client in Model.SalaGenerale)
+            {
+                <tr>
+                    <td>@client._nome</td>
+                    <td>@client._cognome</td>
+                    @if (client._tipoBiglietto)
+                    {
+                        <td>Si</td>
+                    }
+                    else
+                    {
+                        <td>No</td>
+                    }
+                    <td>
+                        <a class="btn btn-warning" asp-controller="Cinema" asp-action="Edit" asp-route-id="@client._id">Edit</a>
+                        <a class="btn btn-danger" asp-controller="Cinema" asp-action="Delete" asp-route-id="@client._id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
