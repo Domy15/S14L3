@@ -40,7 +40,6 @@ namespace S14L3.Controllers
                         if (_SalaNORD.Count < 120)
                         {
                             _SalaNORD.Add(newClient);
-                            _SalaGenerale.Add(newClient);
                         }
                         else
                         {
@@ -52,7 +51,6 @@ namespace S14L3.Controllers
                         if (_SalaSUD.Count < 120)
                         {
                             _SalaSUD.Add(newClient);
-                            _SalaGenerale.Add(newClient);
                         }
                         else
                         {
@@ -64,7 +62,6 @@ namespace S14L3.Controllers
                         if (_SalaEST.Count < 120)
                         {
                             _SalaEST.Add(newClient);
-                            _SalaGenerale.Add(newClient);
                         }
                         else
                         {
@@ -83,28 +80,25 @@ namespace S14L3.Controllers
         [HttpGet("cinema/sala{id}")]
         public IActionResult ClientList(string id)
         {
-            var model = new SalaViewModel();
+            
             if (id == "NORD")
             {
-                model = new SalaViewModel()
-                {
-                    SalaGenerale = _SalaNORD,
-                };
+                _SalaGenerale = _SalaNORD;
             }
             else if (id == "SUD")
             {
-                model = new SalaViewModel()
-                {
-                    SalaGenerale = _SalaSUD,
-                };
+                _SalaGenerale = _SalaSUD;
             }
             else
             {
-                model = new SalaViewModel()
-                {
-                    SalaGenerale = _SalaEST,
-                };
+                _SalaGenerale = _SalaEST;
             }
+
+            var model = new SalaViewModel()
+            {
+                SalaGenerale = _SalaGenerale,
+            };
+
             return View(model);
         }
 
@@ -157,23 +151,6 @@ namespace S14L3.Controllers
             if (existingClient == null)
             {
                 return RedirectToAction("Index");
-            }
-
-            var existingClient1 = _SalaNORD.FirstOrDefault(x => x == existingClient);
-            var existingClient2 = _SalaSUD.FirstOrDefault(x => x == existingClient);
-            var existingClient3 = _SalaEST.FirstOrDefault(x => x == existingClient);
-
-            if (existingClient1 != null)
-            {
-                _SalaNORD.Remove(existingClient1);
-            }
-            else if (existingClient2 != null)
-            {
-                _SalaSUD.Remove(existingClient2);
-            }
-            else
-            {
-                _SalaEST.Remove(existingClient3);
             }
 
             var isRemoveSuccessful =  _SalaGenerale.Remove(existingClient);
