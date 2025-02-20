@@ -26,9 +26,9 @@ namespace S14L3.Models
         };
 
         public bool Error {  get; set; }
-        public List<Cliente> SalaNORD {  get; set; }
-        public List<Cliente> SalaSUD {  get; set; }
-        public List<Cliente> SalaEST { get; set; }
+        public List<Cliente>? SalaNORD {  get; set; }
+        public List<Cliente>? SalaSUD {  get; set; }
+        public List<Cliente>? SalaEST { get; set; }
     }
 }
 
