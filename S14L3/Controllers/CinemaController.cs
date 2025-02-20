@@ -8,7 +8,6 @@ namespace S14L3.Controllers
         private static List<Cliente> _SalaNORD = new List<Cliente>();
         private static List<Cliente> _SalaSUD = new List<Cliente>();
         private static List<Cliente> _SalaEST = new List<Cliente>();
-        private bool error = false;
 
         public IActionResult Index()
         {
@@ -16,8 +15,7 @@ namespace S14L3.Controllers
             { 
                 SalaNORD = _SalaNORD,
                 SalaSUD = _SalaSUD,
-                SalaEST = _SalaEST,
-                Error = error
+                SalaEST = _SalaEST
             };
             model.Sala = "N";
             return View(model);
@@ -35,18 +33,17 @@ namespace S14L3.Controllers
                     _cognome = model.Cognome,
                     _tipoBiglietto = model.TipoBiglietto,
                 };
-                error = false;
                 switch (model.Sala)
                 {
                     case "N":
-                        if (_SalaNORD.Count < 1)
+                        if (_SalaNORD.Count < 120)
                         {
                             Console.WriteLine("Sala Nord");
                             _SalaNORD.Add(newClient);
                         }
                         else
                         {
-                            error = true;
+                            TempData["Error"] = "Sala piena selezionane un'altra";
                         }
                         break;
 
@@ -57,7 +54,7 @@ namespace S14L3.Controllers
                         }
                         else
                         {
-                            error = true;
+                            TempData["Error"] = "Sala piena selezionane un'altra";
                         }
                         break;
 
@@ -68,7 +65,7 @@ namespace S14L3.Controllers
                         }
                         else
                         {
-                            error = true;
+                            TempData["Error"] = "Sala piena selezionane un'altra";
                         }
                         break;
 

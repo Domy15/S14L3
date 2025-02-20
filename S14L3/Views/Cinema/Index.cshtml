@@ -22,7 +22,7 @@
         </div>
 
         <div>
-            <label for="ticketType" asp-for="TipoBiglietto" class="form-label">Biglietto ridotto</label>
+            <label for="ticketType" asp-for="TipoBiglietto" class="form-label">Biglietto ridotto meno di 10 anni</label>
             <input type="checkbox" id="ticketType" asp-for="TipoBiglietto" class="form-check-input" />
             <span class="text-danger" asp-validation-for="TipoBiglietto"></span>
         </div>
@@ -32,10 +32,27 @@
             <select asp-for="Sala" asp-items="Model.Sale" class="form-control"></select>
         </div>
 
-        @if(Model.Error)
+        @if (TempData["Error"] != null)
         {
-            <span class="text-danger">Sala piena seleziona un altra sala</span>
+            <p class="text-danger">@TempData["Error"]</p>
         }
+
+        <div class="d-flex justify-content-between">
+            <div>
+                <p class="h6">Numero di biglietti prenotati nella SALA NORD: @Model.SalaNORD.Count</p>
+                <p class="h6">di cui ridotti: @Model.SalaNORD.Count(x => x._tipoBiglietto == true)</p>
+            </div>
+
+            <div>
+                <p class="h6">Numero di biglietti prenotati nella SALA SUD: @Model.SalaSUD.Count</p>
+                <p class="h6">di cui ridotti: @Model.SalaSUD.Count(x => x._tipoBiglietto == true)</p>
+            </div>
+
+            <div>
+                <p class="h6">Numero di biglietti prenotati nella SALA EST: @Model.SalaEST.Count</p>
+                <p class="h6">di cui ridotti: @Model.SalaEST.Count(x => x._tipoBiglietto == true)</p>
+            </div>
+        </div>
 
         <div>
             <button class="btn btn-success" type="submit">Acquista</button>

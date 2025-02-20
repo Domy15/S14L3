@@ -25,7 +25,6 @@ namespace S14L3.Models
             new SelectListItem{Value = "E", Text = "SALA EST"}
         };
 
-        public bool Error {  get; set; }
         public List<Cliente>? SalaNORD {  get; set; }
         public List<Cliente>? SalaSUD {  get; set; }
         public List<Cliente>? SalaEST { get; set; }
